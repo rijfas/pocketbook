@@ -7,7 +7,12 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Color(0xFFB8DAAE),
+        ),
+      ),
       onGenerateRoute: Routes.onGenerateRoute,
       initialRoute: Routes.loading,
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pocketbook/utils/routes.dart';
 
 import 'pages/pages.dart';
 
@@ -31,38 +32,39 @@ class _DashboardViewState extends State<DashboardView> {
         title: Text('PocketBook'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => Navigator.of(context).pushNamed(Routes.settings),
             icon: CircleAvatar(
               child: Text('RI'),
             ),
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        currentIndex: _index,
-        onTap: (int index) => setState(() {
-          _index = index;
-        }),
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Home',
-            icon: Icon(FontAwesomeIcons.house),
-          ),
-          BottomNavigationBarItem(
-            label: 'Transactions',
-            icon: Icon(FontAwesomeIcons.rightLeft),
-          ),
-          BottomNavigationBarItem(
-            label: 'Budgets',
-            icon: Icon(FontAwesomeIcons.briefcase),
-          ),
-          BottomNavigationBarItem(
-            label: 'Smart Advisor',
-            icon: Icon(FontAwesomeIcons.robot),
-          ),
-        ],
+      bottomNavigationBar: NavigationBar(
+          selectedIndex: _index,
+          onDestinationSelected: (int index) => setState(() {
+                _index = index;
+              }),
+          destinations: [
+            NavigationDestination(
+              label: 'Home',
+              icon: Icon(Icons.home),
+            ),
+            NavigationDestination(
+              label: 'Transactions',
+              icon: Icon(Icons.compare_arrows_rounded),
+            ),
+            NavigationDestination(
+              label: 'Budgets',
+              icon: Icon(Icons.work),
+            ),
+            NavigationDestination(
+              label: 'Smart Advisor',
+              icon: Icon(Icons.chat),
+            ),
+          ]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
       ),
     );
   }
