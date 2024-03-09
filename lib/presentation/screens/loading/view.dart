@@ -21,12 +21,13 @@ class _LoadingViewState extends State<LoadingView> {
     return Scaffold(
       body: Center(
         child: GestureDetector(
-            onTap: () {
-              SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-                  overlays: SystemUiOverlay.values);
-              Navigator.of(context).pushNamed(Routes.dashboard);
-            },
-            child: CircularProgressIndicator()),
+          onTap: () {
+            SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+                overlays: SystemUiOverlay.values);
+            Navigator.of(context).pushNamed(Routes.dashboard);
+          },
+          child: const CircularProgressIndicator(),
+        ),
       ),
     );
   }
