@@ -10,6 +10,8 @@ class Transaction {
 
   IsarLink<Category> category = IsarLink<Category>();
 
+  late String name;
+
   late double amount;
 
   late DateTime createdAt;

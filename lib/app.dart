@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'utils/app_colors.dart';
 import 'utils/routes.dart';
 
 class App extends StatelessWidget {
@@ -11,11 +10,11 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.from(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primaryColor,
+          seedColor: Colors.blue,
         ),
       ),
       onGenerateRoute: Routes.onGenerateRoute,
-      initialRoute: Routes.dashboard,
+      initialRoute: Routes.onboarding,
     );
   }
 }
