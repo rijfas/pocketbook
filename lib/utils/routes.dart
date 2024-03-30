@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pocketbook/presentation/screens/create_category/route.dart';
 import 'package:pocketbook/presentation/screens/onboarding/route.dart';
+import '../presentation/screens/create_category/route.dart';
+import '../presentation/screens/get_started/route.dart';
 import '../presentation/screens/dashboard/route.dart';
 import '../presentation/screens/loading/route.dart';
 import '../presentation/screens/settings/route.dart';
@@ -10,6 +11,7 @@ sealed class Routes {
   static const loading = 'loading';
   static const settings = 'settings';
   static const onboarding = 'onboarding';
+  static const getStarted = 'get-started';
   static const createCategory = 'create-category';
 
   static Route onGenerateRoute(RouteSettings routeSettings) {
@@ -20,10 +22,12 @@ sealed class Routes {
         return Loading();
       case settings:
         return Settings();
-      case onboarding:
-        return Onboarding();
+      case getStarted:
+        return GetStarted();
       case createCategory:
         return CreateCategory();
+      case onboarding:
+        return Onboarding();
       default:
         throw Exception('Invalid Route: ${routeSettings.name}');
     }
