@@ -9,4 +9,9 @@ class Category {
   late String emoji;
 
   late String name;
+
+  @override
+  String toString() {
+    return '$emoji $name';
+  }
 }
