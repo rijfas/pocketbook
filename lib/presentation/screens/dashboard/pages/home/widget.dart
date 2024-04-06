@@ -11,10 +11,20 @@ class HomePageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = context.select<HomePageController, bool>(
+      (controller) => controller.isLoading,
+    );
+
     final recentTransactions =
         context.select<HomePageController, List<Transaction>>(
       (controller) => controller.recentTransactions,
     );
+
+    if (isLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
