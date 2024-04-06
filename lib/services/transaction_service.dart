@@ -18,10 +18,37 @@ class TransactionService {
     return transactions;
   }
 
-  Future<List<Transaction>> recentTransaction({int limit = 5}) async {
+  Future<Map<String, double>> transactionsAmountByCategory({
+    Duration duration = const Duration(days: 7),
+  }) async {
+    final DateTime now = DateTime.now();
+
+    final DateTime dateStart = now.subtract(duration);
+
     final transactions = await _isar.transactions
         .where()
-        .sortByCreatedAt()
+        .filter()
+        .createdAtGreaterThan(dateStart)
+        .findAll();
+
+    Map<String, double> transactionsMap = {};
+
+    for (final transaction in transactions) {
+      if (transactionsMap.containsKey(transaction.category)) {
+        transactionsMap[transaction.category] =
+            transactionsMap[transaction.category]! + transaction.amount;
+      } else {
+        transactionsMap[transaction.category] = transaction.amount;
+      }
+    }
+
+    return transactionsMap;
+  }
+
+  Future<List<Transaction>> recentTransactions({int limit = 5}) async {
+    final transactions = await _isar.transactions
+        .where()
+        .sortByCreatedAtDesc()
         .limit(limit)
         .findAll();
     return transactions;
@@ -39,8 +66,34 @@ class TransactionService {
     });
   }
 
-  Future<double> totalExpense() async {
-    final expense = await _isar.transactions.where().amountProperty().sum();
+  Future<double> totalExpenseForDuration({
+    Duration duration = const Duration(hours: 23),
+  }) async {
+    final DateTime dateStart = DateTime.now().subtract(
+      duration,
+    );
+
+    final expense = await _isar.transactions
+        .where()
+        .filter()
+        .createdAtGreaterThan(dateStart)
+        .amountProperty()
+        .sum();
+    return expense;
+  }
+
+  Future<double> currentMonthAverageExpense() async {
+    final DateTime dateStart = DateTime.now().subtract(
+      const Duration(days: 30),
+    );
+
+    final expense = await _isar.transactions
+        .where()
+        .filter()
+        .createdAtGreaterThan(dateStart)
+        .amountProperty()
+        .average();
+
     return expense;
   }
 }

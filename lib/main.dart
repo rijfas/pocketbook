@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pocketbook/services/category_service.dart';
+import 'package:pocketbook/services/transaction_service.dart';
 import 'package:provider/provider.dart';
 
 import 'app.dart';
@@ -8,8 +10,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final isar = await loadIsar();
   runApp(
-    Provider(
-      create: (_) => isar,
+    MultiProvider(
+      providers: [
+        Provider(create: (_) => CategoryService(isar)),
+        Provider(create: (_) => TransactionService(isar)),
+      ],
       child: const App(),
     ),
   );

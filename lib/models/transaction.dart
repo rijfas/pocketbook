@@ -8,11 +8,15 @@ part 'transaction.g.dart';
 class Transaction {
   Id id = Isar.autoIncrement;
 
-  IsarLink<Category> category = IsarLink<Category>();
+  late String category;
 
   late String name;
 
   late double amount;
 
-  late DateTime createdAt;
+  DateTime createdAt = DateTime.now();
+
+  String get categoryEmoji => category.split(' ')[0];
+
+  String get categoryName => category.substring(2);
 }

@@ -15,6 +15,7 @@ class App extends StatelessWidget {
       ),
       onGenerateRoute: Routes.onGenerateRoute,
       initialRoute: Routes.getStarted,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
