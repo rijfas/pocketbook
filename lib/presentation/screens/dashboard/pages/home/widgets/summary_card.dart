@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:pocketbook/presentation/screens/dashboard/pages/home/controller.dart';
 import 'package:provider/provider.dart';
 
@@ -37,7 +38,8 @@ class SummaryCard extends StatelessWidget {
             ),
             Row(children: [
               Text(
-                '₹$currentDayExpense',
+                NumberFormat.simpleCurrency(locale: 'en_IN')
+                    .format(currentDayExpense),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 36,
@@ -66,7 +68,8 @@ class SummaryCard extends StatelessWidget {
                   style: TextStyle(color: Colors.grey[100]),
                 ),
                 Text(
-                  '₹$currentMonthExpense',
+                  NumberFormat.simpleCurrency(locale: 'en_IN')
+                      .format(currentMonthExpense),
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
@@ -82,7 +85,8 @@ class SummaryCard extends StatelessWidget {
                   style: TextStyle(color: Colors.grey[100]),
                 ),
                 Text(
-                  '₹$monthlyAverage',
+                  NumberFormat.simpleCurrency(locale: 'en_IN')
+                      .format(monthlyAverage),
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,

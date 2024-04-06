@@ -1,4 +1,4 @@
 export 'home/page.dart';
-export 'transactions.dart';
+export 'analytics/page.dart';
 export 'budgets.dart';
 export 'smart_advisor.dart';

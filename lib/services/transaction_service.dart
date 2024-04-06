@@ -19,17 +19,20 @@ class TransactionService {
   }
 
   Future<Map<String, double>> transactionsAmountByCategory({
-    Duration duration = const Duration(days: 7),
+    Duration? duration,
   }) async {
     final DateTime now = DateTime.now();
 
-    final DateTime dateStart = now.subtract(duration);
+    final DateTime? dateStart =
+        (duration != null) ? now.subtract(duration) : null;
 
-    final transactions = await _isar.transactions
-        .where()
-        .filter()
-        .createdAtGreaterThan(dateStart)
-        .findAll();
+    final transactions = (dateStart != null)
+        ? await _isar.transactions
+            .where()
+            .filter()
+            .createdAtGreaterThan(dateStart)
+            .findAll()
+        : await _isar.transactions.where().findAll();
 
     Map<String, double> transactionsMap = {};
 
@@ -67,18 +70,22 @@ class TransactionService {
   }
 
   Future<double> totalExpenseForDuration({
-    Duration duration = const Duration(hours: 23),
+    Duration? duration,
   }) async {
-    final DateTime dateStart = DateTime.now().subtract(
-      duration,
-    );
+    final DateTime now = DateTime.now();
+    print(duration);
+    final DateTime? dateStart =
+        (duration != null) ? now.subtract(duration) : null;
 
-    final expense = await _isar.transactions
-        .where()
-        .filter()
-        .createdAtGreaterThan(dateStart)
-        .amountProperty()
-        .sum();
+    final expense = (dateStart != null)
+        ? await _isar.transactions
+            .where()
+            .filter()
+            .createdAtGreaterThan(dateStart)
+            .amountProperty()
+            .sum()
+        : await _isar.transactions.where().amountProperty().sum();
+
     return expense;
   }
 

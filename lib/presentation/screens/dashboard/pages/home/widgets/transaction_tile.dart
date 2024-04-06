@@ -17,15 +17,16 @@ class TransactionTile extends StatelessWidget {
         child: Text(transaction.categoryEmoji),
       ),
       title: Text(
-        transaction.categoryName,
+        toBeginningOfSentenceCase(transaction.categoryName.trim()),
         style: const TextStyle(fontWeight: FontWeight.w500),
       ),
       subtitle: Text(
-        ' ${DateFormat.MMMMEEEEd().format(transaction.createdAt)}',
+        DateFormat.MMMMEEEEd().format(transaction.createdAt),
         style: const TextStyle(color: Colors.grey),
       ),
       trailing: Text(
-        '₹ ${transaction.amount.toString()}',
+        NumberFormat.compactSimpleCurrency(locale: 'en_IN')
+            .format(transaction.amount),
         style: const TextStyle(
           fontSize: 14,
         ),

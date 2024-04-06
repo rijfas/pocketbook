@@ -16,7 +16,7 @@ class DashboardView extends StatefulWidget {
 class _DashboardViewState extends State<DashboardView> {
   final _pages = const [
     HomePage(),
-    TransactionsPage(),
+    AnalyticsPage(),
     BudgetsPage(),
     SmartAdvisorPage(),
   ];
