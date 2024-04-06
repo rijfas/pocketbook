@@ -73,7 +73,6 @@ class TransactionService {
     Duration? duration,
   }) async {
     final DateTime now = DateTime.now();
-    print(duration);
     final DateTime? dateStart =
         (duration != null) ? now.subtract(duration) : null;
 

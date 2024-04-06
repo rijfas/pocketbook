@@ -6,11 +6,15 @@ class AnalyticsPageController extends ChangeNotifier {
 
   AnalyticsPageController(this._transactionService);
 
+  bool _isLoading = true;
+
   Map<String, double> _chartData = {};
 
   AnalyticsMode _mode = AnalyticsMode.today;
 
   double _totalExpense = 0.0;
+
+  bool get isLoading => _isLoading;
 
   Map<String, double> get chartData => _chartData;
 
@@ -19,7 +23,12 @@ class AnalyticsPageController extends ChangeNotifier {
   double get totalExpense => _totalExpense;
 
   Future<void> load() async {
+    _isLoading = true;
+
+    notifyListeners();
+
     final today = DateTime.now();
+
     final duration = (_mode == AnalyticsMode.today)
         ? Duration(hours: today.hour)
         : (_mode == AnalyticsMode.week)
@@ -35,6 +44,8 @@ class AnalyticsPageController extends ChangeNotifier {
     _totalExpense = await _transactionService.totalExpenseForDuration(
       duration: duration,
     );
+
+    _isLoading = false;
 
     notifyListeners();
   }

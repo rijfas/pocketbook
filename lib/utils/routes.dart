@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pocketbook/presentation/screens/onboarding/route.dart';
-import '../presentation/screens/create_category/route.dart';
 import '../presentation/screens/get_started/route.dart';
 import '../presentation/screens/dashboard/route.dart';
 import '../presentation/screens/loading/route.dart';
@@ -12,7 +11,6 @@ sealed class Routes {
   static const settings = 'settings';
   static const onboarding = 'onboarding';
   static const getStarted = 'get-started';
-  static const createCategory = 'create-category';
 
   static Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -24,8 +22,6 @@ sealed class Routes {
         return Settings();
       case getStarted:
         return GetStarted();
-      case createCategory:
-        return CreateCategory();
       case onboarding:
         return Onboarding();
       default:

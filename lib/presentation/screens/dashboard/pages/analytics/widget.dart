@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pocketbook/presentation/screens/dashboard/pages/analytics/controller.dart';
 import 'package:pocketbook/presentation/screens/dashboard/pages/analytics/widgets/categories_list.dart';
+import 'package:provider/provider.dart';
 
 import 'widgets/analytics_chart.dart';
 import 'widgets/analytics_mode_button.dart';
@@ -9,6 +11,16 @@ class AnalyticsPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = context.select<AnalyticsPageController, bool>(
+      (controller) => controller.isLoading,
+    );
+
+    if (isLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.only(
         top: 16.0,
