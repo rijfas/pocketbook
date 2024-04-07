@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pocketbook/presentation/screens/dashboard/widgets/date_picker_field.dart';
+import 'date_picker_field.dart';
 
 class DatePickerFormField extends FormField<DateTime> {
   DatePickerFormField({
@@ -9,6 +9,7 @@ class DatePickerFormField extends FormField<DateTime> {
     required DateTime firstDate,
     required DateTime lastDate,
     required DateTime initialDate,
+    String? labelText,
   }) : super(
           key: key,
           initialValue: initialDate,
@@ -24,6 +25,7 @@ class DatePickerFormField extends FormField<DateTime> {
                 onDatePicked(date);
               },
               errorText: state.errorText,
+              labelText: labelText,
             );
           },
         );

@@ -8,6 +8,7 @@ class DatePickerField extends StatefulWidget {
   final bool hasError;
   final void Function(DateTime?) onDatePicked;
   final String? errorText;
+  final String? labelText;
 
   const DatePickerField({
     Key? key,
@@ -16,6 +17,7 @@ class DatePickerField extends StatefulWidget {
     required this.initialDate,
     required this.onDatePicked,
     this.errorText,
+    this.labelText,
   })  : hasError = errorText != null,
         super(key: key);
 
@@ -48,10 +50,10 @@ class _DatePickerFieldState extends State<DatePickerField> {
         });
         widget.onDatePicked(selectedDate);
       },
-      decoration: const InputDecoration(
-        border: OutlineInputBorder(),
-        icon: Icon(Icons.date_range),
-        labelText: 'Date',
+      decoration: InputDecoration(
+        border: const OutlineInputBorder(),
+        icon: const Icon(Icons.date_range),
+        labelText: widget.labelText ?? 'Date',
       ),
       controller: _selectedDate != null
           ? TextEditingController(
