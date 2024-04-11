@@ -8,7 +8,22 @@ class Budget {
 
   late double amount;
 
-  late int year;
+  late DateTime startDate;
 
-  late String month;
+  late DateTime endDate;
+
+  late List<CategoryWiseAmount> categoryWiseAmount;
+
+  @ignore
+  Map<String, double> get categoryWiseAmountAsMap => {
+        for (final element in categoryWiseAmount)
+          element.category: element.amount
+      };
+}
+
+@embedded
+class CategoryWiseAmount {
+  late String category;
+
+  late double amount;
 }

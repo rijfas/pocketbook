@@ -64,11 +64,15 @@ class _DashboardViewState extends State<DashboardView> {
           ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            builder: (_) => const AddExpenseSheet(),
-          );
+          if (_index == 2) {
+            Navigator.of(context).pushNamed(Routes.createBudget);
+          } else {
+            await showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (_) => const AddExpenseSheet(),
+            );
+          }
         },
         child: const Icon(Icons.add),
       ),

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 sealed class Constants {
@@ -21,4 +23,6 @@ sealed class Constants {
     Colors.brown[300]!,
     Colors.grey[300]!,
   ];
+
+  static Color randomColor() => paleColors[Random().nextInt(paleColors.length)];
 }

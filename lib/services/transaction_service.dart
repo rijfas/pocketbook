@@ -69,6 +69,43 @@ class TransactionService {
     });
   }
 
+  Future<double> totalExpenseBetween({
+    required DateTime startDate,
+    required DateTime endDate,
+  }) async {
+    final expense = await _isar.transactions
+        .where()
+        .filter()
+        .createdAtBetween(startDate, endDate)
+        .amountProperty()
+        .sum();
+    return expense;
+  }
+
+  Future<Map<String, double>> categoryWiseSpentBetween({
+    required DateTime startDate,
+    required DateTime endDate,
+  }) async {
+    final transactions = await _isar.transactions
+        .where()
+        .filter()
+        .createdAtBetween(startDate, endDate)
+        .findAll();
+
+    Map<String, double> categoryWiseSpentMap = {};
+
+    for (final transaction in transactions) {
+      if (categoryWiseSpentMap.containsKey(transaction.category)) {
+        categoryWiseSpentMap[transaction.category] =
+            categoryWiseSpentMap[transaction.category]! + transaction.amount;
+      } else {
+        categoryWiseSpentMap[transaction.category] = transaction.amount;
+      }
+    }
+
+    return categoryWiseSpentMap;
+  }
+
   Future<double> totalExpenseForDuration({
     Duration? duration,
   }) async {
