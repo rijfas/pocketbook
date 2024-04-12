@@ -18,7 +18,7 @@ class _DashboardViewState extends State<DashboardView> {
     HomePage(),
     AnalyticsPage(),
     BudgetsPage(),
-    SmartAdvisorPage(),
+    ProfilePage(),
   ];
 
   int _index = 0;
@@ -33,9 +33,7 @@ class _DashboardViewState extends State<DashboardView> {
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pushNamed(Routes.settings),
-            icon: const CircleAvatar(
-              child: Text('RI'),
-            ),
+            icon: CircleAvatar(child: Icon(Icons.notifications)),
           )
         ],
       ),
@@ -54,28 +52,30 @@ class _DashboardViewState extends State<DashboardView> {
               icon: Icon(Icons.pie_chart),
             ),
             NavigationDestination(
-              label: 'My Budget',
+              label: 'Budgets',
               icon: Icon(Icons.work),
             ),
             NavigationDestination(
-              label: 'Smart Advisor',
-              icon: Icon(Icons.chat),
+              label: 'Profile',
+              icon: Icon(Icons.account_circle),
             ),
           ]),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          if (_index == 2) {
-            Navigator.of(context).pushNamed(Routes.createBudget);
-          } else {
-            await showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (_) => const AddExpenseSheet(),
-            );
-          }
-        },
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: (_index == 0 || _index == 2)
+          ? FloatingActionButton(
+              onPressed: () async {
+                if (_index == 0) {
+                  await showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (_) => const AddExpenseSheet(),
+                  );
+                } else if (_index == 2) {
+                  Navigator.of(context).pushNamed(Routes.createBudget);
+                }
+              },
+              child: const Icon(Icons.add),
+            )
+          : null,
     );
   }
 }
