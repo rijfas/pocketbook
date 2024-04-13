@@ -33,7 +33,11 @@ class SelectCategorySheetController extends ChangeNotifier {
 
   Future<void> searchCategories(String query) async {
     _filteredCategories = _categories
-        .where((category) => category.name.startsWith(query))
+        .where(
+          (category) => category.name.toLowerCase().contains(
+                query,
+              ),
+        )
         .toList();
     notifyListeners();
   }
