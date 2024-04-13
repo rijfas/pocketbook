@@ -7,7 +7,12 @@ import '../../../../services/transaction_service.dart';
 import 'package:provider/provider.dart';
 
 class AddExpenseSheet extends StatefulWidget {
-  const AddExpenseSheet({super.key});
+  const AddExpenseSheet({
+    super.key,
+    this.amount,
+  });
+
+  final double? amount;
 
   @override
   State<AddExpenseSheet> createState() => _AddExpenseSheetState();
@@ -15,10 +20,18 @@ class AddExpenseSheet extends StatefulWidget {
 
 class _AddExpenseSheetState extends State<AddExpenseSheet> {
   final _expenseNameController = TextEditingController();
-  final _amountController = TextEditingController();
+  late TextEditingController _amountController;
   final _formKey = GlobalKey<FormState>();
   DateTime _selectedDate = DateTime.now();
   Category? _selectedCategory;
+
+  @override
+  void initState() {
+    _amountController = TextEditingController(
+      text: widget.amount?.toString() ?? '',
+    );
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -54,7 +67,7 @@ class _AddExpenseSheetState extends State<AddExpenseSheet> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () => Navigator.of(context).pop(false),
                       icon: const Icon(Icons.close),
                     )
                   ],
@@ -156,7 +169,9 @@ class _AddExpenseSheetState extends State<AddExpenseSheet> {
                         context
                             .read<TransactionService>()
                             .addTranasction(transaction)
-                            .then((_) => Navigator.of(context).pop());
+                            .then(
+                              (_) => Navigator.of(context).pop(true),
+                            );
                         ;
                       }
                     },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocketbook/presentation/screens/dashboard/widgets/notifications_button.dart';
 
 import '../../../utils/routes.dart';
 import 'pages/pages.dart';
@@ -30,11 +31,8 @@ class _DashboardViewState extends State<DashboardView> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text('PocketBook'),
-        actions: [
-          IconButton(
-            onPressed: () => Navigator.of(context).pushNamed(Routes.settings),
-            icon: CircleAvatar(child: Icon(Icons.notifications)),
-          )
+        actions: const [
+          NotificationsButton(),
         ],
       ),
       bottomNavigationBar: NavigationBar(

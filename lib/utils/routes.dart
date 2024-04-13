@@ -6,12 +6,12 @@ import 'package:pocketbook/presentation/screens/view_budget/route.dart';
 import '../presentation/screens/get_started/route.dart';
 import '../presentation/screens/dashboard/route.dart';
 import '../presentation/screens/loading/route.dart';
-import '../presentation/screens/settings/route.dart';
+import '../presentation/screens/notifications/route.dart';
 
 sealed class Routes {
   static const dashboard = 'dashboard';
   static const loading = 'loading';
-  static const settings = 'settings';
+  static const notifications = 'notifications';
   static const onboarding = 'onboarding';
   static const getStarted = 'get-started';
   static const createBudget = 'create-budget';
@@ -25,8 +25,8 @@ sealed class Routes {
         return CreateBudget();
       case loading:
         return Loading();
-      case settings:
-        return Settings();
+      case notifications:
+        return Notifications();
       case getStarted:
         return GetStarted();
       case onboarding:

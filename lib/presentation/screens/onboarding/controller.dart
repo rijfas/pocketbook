@@ -1,6 +1,5 @@
 import 'package:pocketbook/utils/app_preferences.dart';
-import 'package:pocketbook/utils/message_handler.dart';
-import 'package:telephony/telephony.dart';
+import 'package:pocketbook/utils/sms_manager.dart';
 
 class OnboardingController {
   late final AppPreferences _appPreferences;
@@ -13,14 +12,7 @@ class OnboardingController {
     required bool smsTrackingEnabled,
   }) async {
     if (smsTrackingEnabled) {
-      final telephony = Telephony.instance;
-      final isSmsPermissionGranted = await telephony.requestSmsPermissions;
-      if (isSmsPermissionGranted ?? false) {
-        telephony.listenIncomingSms(
-          onNewMessage: messageHandler,
-          onBackgroundMessage: messageHandler,
-        );
-      } else {
+      if (!(await SmsManager.setupSms())) {
         return false;
       }
     }
