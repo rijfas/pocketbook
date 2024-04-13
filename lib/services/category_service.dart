@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:isar/isar.dart';
+import 'package:pocketbook/utils/constants.dart';
 import '../models/category.dart';
 
 class CategoryService {
@@ -15,6 +16,12 @@ class CategoryService {
   Future<List<Category>> allCategories() async {
     final categories = await _isar.categorys.where().findAll();
     return categories;
+  }
+
+  Future<void> createDefaultCategories() async {
+    await _isar.categorys.putAll(
+      Constants.generateDefaultCategories(),
+    );
   }
 
   Future<void> putCategory(Category category) async {

@@ -10,6 +10,8 @@ class Category {
 
   late String name;
 
+  bool isDefault = false;
+
   @override
   String toString() {
     return '$emoji $name';
