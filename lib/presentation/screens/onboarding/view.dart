@@ -51,6 +51,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               SizedBox(height: 36),
               TextFormField(
                 autofocus: true,
+                textInputAction: TextInputAction.next,
                 controller: _userNameController,
                 validator: (value) =>
                     value == null || value.isEmpty ? 'Enter a name' : null,
@@ -63,6 +64,7 @@ class _OnboardingViewState extends State<OnboardingView> {
               const SizedBox(height: 16),
               TextFormField(
                 controller: _emailController,
+                textInputAction: TextInputAction.done,
                 validator: (value) => value == null || !isEmail(value)
                     ? 'Enter a valid email'
                     : null,
