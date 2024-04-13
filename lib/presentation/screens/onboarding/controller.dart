@@ -1,10 +1,10 @@
-import 'package:pocketbook/utils/app_preferences.dart';
+import 'package:pocketbook/utils/app_data.dart';
 import 'package:pocketbook/utils/sms_manager.dart';
 
 class OnboardingController {
-  late final AppPreferences _appPreferences;
+  late final AppData _appData;
 
-  OnboardingController(this._appPreferences);
+  OnboardingController(this._appData);
 
   Future<bool> savePreferences({
     required String userName,
@@ -16,7 +16,7 @@ class OnboardingController {
         return false;
       }
     }
-    await _appPreferences.savePreferences(
+    await _appData.savePreferences(
       userName: userName,
       email: email,
       smsTrackingEnabled: smsTrackingEnabled,

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:pocketbook/services/notification_service.dart';
-import 'package:pocketbook/utils/db.dart';
-import 'package:pocketbook/utils/notifications_manager.dart';
-import 'services/budget_service.dart';
-import 'services/category_service.dart';
-import 'services/transaction_service.dart';
-import 'utils/app_preferences.dart';
 import 'package:provider/provider.dart';
 
 import 'app.dart';
+import 'services/budget_service.dart';
+import 'services/category_service.dart';
+import 'services/notification_service.dart';
+import 'services/transaction_service.dart';
+import 'utils/app_data.dart';
+import 'utils/db.dart';
+import 'utils/notifications_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +17,7 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
-        Provider(create: (_) => AppPreferences()),
+        ChangeNotifierProvider(create: (_) => AppData(isar)),
         Provider(create: (_) => NotificationService(isar)),
         Provider(create: (_) => CategoryService(isar)),
         Provider(create: (_) => TransactionService(isar)),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pocketbook/utils/app_preferences.dart';
-import 'package:pocketbook/utils/routes.dart';
+import '../../../utils/app_data.dart';
+import '../../../utils/routes.dart';
 import 'package:provider/provider.dart';
 
 class LoadingView extends StatefulWidget {
@@ -16,14 +16,14 @@ class _LoadingViewState extends State<LoadingView> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-    final appPreferences = context.read<AppPreferences>();
-    appPreferences.load().then(
+    final appData = context.read<AppData>();
+    appData.load().then(
       (_) {
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
                 overlays: SystemUiOverlay.values)
             .then(
           (_) {
-            if (appPreferences.isFirstRun) {
+            if (appData.isFirstRun) {
               Navigator.of(context).pushNamed(Routes.getStarted);
             } else {
               Navigator.of(context).pushNamed(Routes.dashboard);
