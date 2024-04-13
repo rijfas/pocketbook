@@ -24,9 +24,11 @@ class _LoadingViewState extends State<LoadingView> {
             .then(
           (_) {
             if (appData.isFirstRun) {
-              Navigator.of(context).pushNamed(Routes.getStarted);
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil(Routes.getStarted, (_) => false);
             } else {
-              Navigator.of(context).pushNamed(Routes.dashboard);
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil(Routes.dashboard, (_) => false);
             }
           },
         );

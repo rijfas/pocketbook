@@ -114,7 +114,10 @@ class _OnboardingViewState extends State<OnboardingView> {
                         .then(
                       (saved) {
                         if (saved) {
-                          Navigator.of(context).pushNamed(Routes.dashboard);
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            Routes.dashboard,
+                            (_) => false,
+                          );
                         }
                       },
                     );
