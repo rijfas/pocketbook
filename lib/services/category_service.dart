@@ -19,9 +19,11 @@ class CategoryService {
   }
 
   Future<void> createDefaultCategories() async {
-    await _isar.categorys.putAll(
-      Constants.generateDefaultCategories(),
-    );
+    await _isar.writeTxn(() async {
+      await _isar.categorys.putAll(
+        Constants.generateDefaultCategories(),
+      );
+    });
   }
 
   Future<void> putCategory(Category category) async {
