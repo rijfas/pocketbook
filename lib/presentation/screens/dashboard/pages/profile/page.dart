@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pocketbook/models/transaction.dart';
 import 'package:pocketbook/presentation/screens/dashboard/pages/profile/widgets/edit_profile_sheet.dart';
 import 'package:pocketbook/presentation/screens/dashboard/pages/profile/widgets/preference_tile.dart';
+import 'package:pocketbook/utils/routes.dart';
 
 import 'widgets/dark_mode_toggle.dart';
 import 'widgets/profile_card.dart';
@@ -50,10 +52,12 @@ class ProfilePage extends StatelessWidget {
                       );
                     },
                   ),
-                  const PreferenceTile(
+                  PreferenceTile(
                     icon: Icons.history,
                     title: 'Transaction History',
                     subTitle: 'View all transactions',
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(Routes.transactions),
                   ),
                   const PreferenceTile(
                     icon: Icons.category,

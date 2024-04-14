@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../../models/transaction.dart';
 import 'controller.dart';
 import 'widgets/summary_card.dart';
-import 'widgets/transaction_tile.dart';
+import '../../../../widgets/transaction_tile.dart';
 
 class HomePageWidget extends StatelessWidget {
   const HomePageWidget({super.key});

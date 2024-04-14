@@ -14,7 +14,8 @@ class TransactionService {
   }
 
   Future<List<Transaction>> allTransactions() async {
-    final transactions = await _isar.transactions.where().findAll();
+    final transactions =
+        await _isar.transactions.where().sortByCreatedAtDesc().findAll();
     return transactions;
   }
 
