@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pocketbook/presentation/screens/onboarding/controller.dart';
 import 'package:pocketbook/utils/assets.dart';
 import 'package:pocketbook/utils/routes.dart';
@@ -34,23 +35,18 @@ class _OnboardingViewState extends State<OnboardingView> {
         title: Text('Get Started'),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 16.0,
-          horizontal: 8.0,
-        ),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: ListView(
             children: [
-              SizedBox(height: 36),
               SizedBox(
-                height: 200,
+                height: 300,
                 width: double.infinity,
-                child: SvgPicture.asset(
-                  Assets.onboardingImage,
+                child: Lottie.asset(
+                  Assets.onboardingAnimation,
                 ),
               ),
-              SizedBox(height: 36),
               TextFormField(
                 autofocus: true,
                 textInputAction: TextInputAction.next,

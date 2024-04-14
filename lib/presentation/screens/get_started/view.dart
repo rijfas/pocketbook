@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pocketbook/utils/assets.dart';
 import 'package:pocketbook/utils/routes.dart';
 
@@ -32,14 +32,10 @@ class _GetStartedViewState extends State<GetStartedView> {
               children: [
                 // SVG Hero Image
                 SizedBox(
-                  height: 200,
+                  height: 300,
                   width: double.infinity,
-                  child: SvgPicture.asset(
-                    Assets.heroImage,
-                  ),
+                  child: Lottie.asset(Assets.getStartedAnimation),
                 ),
-                SizedBox(height: 96),
-                // Motivational Tagline
                 Text(
                   "Smart Money, Smart Life:\nTransforming Your Finances",
                   textAlign: TextAlign.center,

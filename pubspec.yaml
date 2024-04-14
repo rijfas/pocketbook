@@ -50,6 +50,7 @@ dependencies:
   string_validator: ^1.0.2
   flutter_local_notifications: ^17.0.0
   animated_flip_counter: ^0.3.3
+  lottie: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +79,9 @@ flutter:
   assets:
     - assets/images/hero.svg
     - assets/images/onboarding.svg
+    - assets/animations/onboarding.json
+    - assets/animations/get_started.json
+    - assets/animations/empty.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
