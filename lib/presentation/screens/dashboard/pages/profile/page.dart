@@ -65,10 +65,12 @@ class ProfilePage extends StatelessWidget {
                     onTap: () =>
                         Navigator.of(context).pushNamed(Routes.categories),
                   ),
-                  const PreferenceTile(
+                  PreferenceTile(
                     icon: Icons.shield_outlined,
                     title: 'Terms of Use',
                     subTitle: 'View terms of use',
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(Routes.termsOfUse),
                   ),
                 ],
               ),
