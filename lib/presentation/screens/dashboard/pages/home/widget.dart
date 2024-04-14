@@ -1,31 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../../../../models/transaction.dart';
-import 'controller.dart';
 import 'widgets/summary_card.dart';
-import '../../../../widgets/transaction_tile.dart';
+import 'widgets/transactions_list.dart';
 
 class HomePageWidget extends StatelessWidget {
   const HomePageWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final isLoading = context.select<HomePageController, bool>(
-      (controller) => controller.isLoading,
-    );
-
-    final recentTransactions =
-        context.select<HomePageController, List<Transaction>>(
-      (controller) => controller.recentTransactions,
-    );
-
-    if (isLoading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
@@ -72,17 +54,7 @@ class HomePageWidget extends StatelessWidget {
             ],
           ),
           const Divider(),
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: recentTransactions.length,
-              itemBuilder: (context, index) {
-                return TransactionTile(
-                  transaction: recentTransactions[index],
-                );
-              },
-            ),
-          ),
+          const TransactionsList(),
         ],
       ),
     );
