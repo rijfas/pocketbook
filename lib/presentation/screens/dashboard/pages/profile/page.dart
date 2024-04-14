@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocketbook/presentation/screens/dashboard/pages/profile/widgets/edit_profile_sheet.dart';
 import 'package:pocketbook/presentation/screens/dashboard/pages/profile/widgets/preference_tile.dart';
 
 import 'widgets/dark_mode_toggle.dart';
@@ -37,10 +38,17 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                   const Divider(),
-                  const PreferenceTile(
+                  PreferenceTile(
                     title: 'Edit Profile',
                     subTitle: 'Change name, email',
                     icon: Icons.account_circle,
+                    onTap: () async {
+                      await showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (_) => const EditProfileSheet(),
+                      );
+                    },
                   ),
                   const PreferenceTile(
                     icon: Icons.history,

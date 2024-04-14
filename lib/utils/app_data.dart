@@ -83,6 +83,17 @@ class AppData extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> editProfile({
+    required String userName,
+    required String email,
+  }) async {
+    await _prefs.setString('userName', userName);
+    await _prefs.setString('email', email);
+    _userName = userName;
+    _email = email;
+    notifyListeners();
+  }
+
   @override
   void dispose() {
     _streamSubscription.cancel();
