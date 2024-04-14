@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pocketbook/presentation/screens/dashboard/pages/profile/widgets/preference_tile.dart';
+
+import 'widgets/dark_mode_toggle.dart';
+import 'widgets/profile_card.dart';
+import 'widgets/sms_tracking_toggle.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -9,41 +14,8 @@ class ProfilePage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: ListView(
         children: [
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    child: Text('RU'),
-                  ),
-                  SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Rijfas Usman',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Text(
-                          'rijfas01@gmail.com',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: 16),
+          const ProfileCard(),
+          const SizedBox(height: 16),
           Card(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -64,84 +36,32 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Divider(),
-                  ListTile(
-                    leading: CircleAvatar(
-                      child: Icon(Icons.account_circle),
-                    ),
-                    title: Text(
-                      'Edit Profile',
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text(
-                      'Change name, email',
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.chevron_right,
-                    ),
+                  const Divider(),
+                  const PreferenceTile(
+                    title: 'Edit Profile',
+                    subTitle: 'Change name, email',
+                    icon: Icons.account_circle,
                   ),
-                  ListTile(
-                    leading: CircleAvatar(
-                      child: Icon(Icons.history),
-                    ),
-                    title: Text(
-                      'Transaction History',
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text(
-                      'View all transactions',
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.chevron_right,
-                    ),
+                  const PreferenceTile(
+                    icon: Icons.history,
+                    title: 'Transaction History',
+                    subTitle: 'View all transactions',
                   ),
-                  ListTile(
-                    leading: CircleAvatar(
-                      child: Icon(Icons.category),
-                    ),
-                    title: Text(
-                      'Manage Categories',
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text(
-                      'Create and manage categories',
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.chevron_right,
-                    ),
+                  const PreferenceTile(
+                    icon: Icons.category,
+                    title: 'Manage Categories',
+                    subTitle: 'Create and manage categories',
                   ),
-                  ListTile(
-                    leading: CircleAvatar(
-                      child: Icon(Icons.shield_outlined),
-                    ),
-                    title: Text(
-                      'Terms of Use',
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text(
-                      'View terms of use',
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.chevron_right,
-                    ),
+                  const PreferenceTile(
+                    icon: Icons.shield_outlined,
+                    title: 'Terms of Use',
+                    subTitle: 'View terms of use',
                   ),
                 ],
               ),
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Card(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -162,87 +82,20 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Divider(),
-                  ListTile(
-                    leading: CircleAvatar(
-                      child: Icon(Icons.notifications),
-                    ),
-                    title: Text(
-                      'Notifications',
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text(
-                      'Enable app notifications',
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    trailing: Switch(
-                      value: false,
-                      onChanged: (_) => {},
-                    ),
+                  const Divider(),
+                  const DarkModeToggle(),
+                  const SmsTrackingToggle(),
+                  const PreferenceTile(
+                    icon: Icons.question_mark,
+                    title: 'FAQ',
+                    subTitle: 'Frequently asked questions',
                   ),
-                  ListTile(
-                    leading: CircleAvatar(
-                      child: Icon(Icons.sms),
-                    ),
-                    title: Text(
-                      'SMS Tracking',
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text(
-                      'Auto add transactions by tracking sms',
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    trailing: Switch(
-                      value: false,
-                      onChanged: (_) => {},
-                    ),
-                  ),
-                  ListTile(
-                    leading: CircleAvatar(
-                      child: Icon(Icons.question_mark),
-                    ),
-                    title: Text(
-                      'FAQ',
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text(
-                      'Frequently asked questions',
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.chevron_right,
-                    ),
-                  ),
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.red[50],
-                      child: Icon(
-                        Icons.delete,
-                        color: Colors.red[700],
-                      ),
-                    ),
-                    title: Text(
-                      'Reset App Data',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.red[700],
-                      ),
-                    ),
-                    subtitle: Text(
-                      'Clear all app data and restart',
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    trailing: Icon(
-                      Icons.chevron_right,
-                    ),
+                  PreferenceTile(
+                    icon: Icons.delete,
+                    title: 'Reset App Data',
+                    subTitle: 'Clear all app data and restart',
+                    primaryColor: Colors.red[700],
+                    secondaryColor: Colors.red[50],
                   ),
                 ],
               ),

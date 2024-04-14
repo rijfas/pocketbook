@@ -21,15 +21,15 @@ class AppData extends ChangeNotifier {
   String _email = '';
   bool _isFirstRun = true;
   bool _smsTrackingEnabled = false;
-  bool _notificationsEnabled = false;
   bool _hasNotification = false;
+  bool _darkModeEnabled = false;
 
   String get userName => _userName;
   String get email => _email;
   bool get isFirstRun => _isFirstRun;
   bool get smsTrackingEnabled => _smsTrackingEnabled;
-  bool get notificationsEnabled => _notificationsEnabled;
   bool get hasNotification => _hasNotification;
+  bool get darkModeEnabled => _darkModeEnabled;
 
   Future<void> load() async {
     _prefs = await SharedPreferences.getInstance();
@@ -37,7 +37,7 @@ class AppData extends ChangeNotifier {
     _userName = _prefs.getString('userName') ?? '';
     _email = _prefs.getString('email') ?? '';
     _smsTrackingEnabled = _prefs.getBool('smsTrackingEnabled') ?? false;
-    _notificationsEnabled = _prefs.getBool('notificationsEnabled') ?? false;
+    _darkModeEnabled = _prefs.getBool('darkModeEnabled') ?? false;
     _hasNotification = (await _isar.notifications.count()) > 0;
     notifyListeners();
   }
@@ -47,27 +47,40 @@ class AppData extends ChangeNotifier {
     required String email,
     required bool smsTrackingEnabled,
   }) async {
+    _userName = userName;
+    _email = email;
+    _smsTrackingEnabled = smsTrackingEnabled;
+    _isFirstRun = false;
     await _prefs.setString('userName', userName);
     await _prefs.setString('email', email);
     await _prefs.setBool('smsTrackingEnabled', smsTrackingEnabled);
-    await _prefs.setBool('notificationsEnabled', true);
     await _prefs.setBool('isFirstRun', false);
+    await _prefs.setBool('darkModeEnabled', false);
+    notifyListeners();
   }
 
   Future<void> setUserName(String userName) async {
     await _prefs.setString('userName', userName);
+    _userName = userName;
+    notifyListeners();
   }
 
   Future<void> setEmail(String email) async {
     await _prefs.setString('email', email);
+    _email = email;
+    notifyListeners();
   }
 
   Future<void> setSmsTrackingEnabled(bool smsTrackingEnabled) async {
     await _prefs.setBool('smsTrackingEnabled', smsTrackingEnabled);
+    _smsTrackingEnabled = smsTrackingEnabled;
+    notifyListeners();
   }
 
-  Future<void> setNotificationsEnabled(bool notificationsEnabled) async {
-    await _prefs.setBool('notificationsEnabled', notificationsEnabled);
+  Future<void> setDarkModeEnabled(bool darkModeEnabled) async {
+    await _prefs.setBool('darkModeEnabled', darkModeEnabled);
+    _darkModeEnabled = darkModeEnabled;
+    notifyListeners();
   }
 
   @override
