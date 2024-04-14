@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pocketbook/models/budget.dart';
+import 'package:pocketbook/presentation/screens/categories/route.dart';
 import 'package:pocketbook/presentation/screens/create_budget/route.dart';
 import 'package:pocketbook/presentation/screens/onboarding/route.dart';
 import 'package:pocketbook/presentation/screens/transactions/route.dart';
@@ -18,6 +19,7 @@ sealed class Routes {
   static const createBudget = 'create-budget';
   static const viewBudget = 'view-budget';
   static const transactions = 'transactions';
+  static const categories = 'categories';
 
   static Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -37,6 +39,8 @@ sealed class Routes {
         return ViewBudget(budget: routeSettings.arguments as Budget);
       case transactions:
         return Transactions();
+      case categories:
+        return Categories();
       default:
         throw Exception('Invalid Route: ${routeSettings.name}');
     }

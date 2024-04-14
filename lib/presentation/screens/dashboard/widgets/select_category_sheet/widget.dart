@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../models/category.dart';
-import '../create_category_dialog.dart';
+import '../../../../widgets/create_category_dialog.dart';
 import 'controller.dart';
 
 class SelectCategorySheetWidget extends StatelessWidget {

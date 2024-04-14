@@ -18,6 +18,12 @@ class CategoryService {
     return categories;
   }
 
+  Future<List<Category>> customCategories() async {
+    final categories =
+        await _isar.categorys.filter().isDefaultEqualTo(false).findAll();
+    return categories;
+  }
+
   Future<void> createDefaultCategories() async {
     await _isar.writeTxn(() async {
       await _isar.categorys.putAll(

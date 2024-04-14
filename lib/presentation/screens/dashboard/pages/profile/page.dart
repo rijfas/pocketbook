@@ -58,10 +58,12 @@ class ProfilePage extends StatelessWidget {
                     onTap: () =>
                         Navigator.of(context).pushNamed(Routes.transactions),
                   ),
-                  const PreferenceTile(
+                  PreferenceTile(
                     icon: Icons.category,
                     title: 'Manage Categories',
-                    subTitle: 'Create and manage categories',
+                    subTitle: 'Manage custom categories',
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(Routes.categories),
                   ),
                   const PreferenceTile(
                     icon: Icons.shield_outlined,
