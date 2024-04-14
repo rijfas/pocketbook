@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:telephony/telephony.dart';
 
 import '../models/notification.dart';
@@ -18,6 +19,15 @@ sealed class SmsManager {
       return true;
     }
     return false;
+  }
+
+  static Future<bool> requestSmsPermission() async {
+    try {
+      await Telephony.instance.requestSmsPermissions;
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }
 

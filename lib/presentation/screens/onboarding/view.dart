@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pocketbook/presentation/screens/onboarding/controller.dart';
 import 'package:pocketbook/utils/assets.dart';
 import 'package:pocketbook/utils/routes.dart';
+import 'package:pocketbook/utils/show_alert_dialog.dart';
+import 'package:pocketbook/utils/sms_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
 
@@ -27,7 +29,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text('Get Started'),
       ),
@@ -68,6 +70,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                 validator: (value) => value == null || !isEmail(value)
                     ? 'Enter a valid email'
                     : null,
+                keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   prefixIcon: Icon(Icons.mail),
@@ -96,9 +99,22 @@ class _OnboardingViewState extends State<OnboardingView> {
                 trailing: Switch(
                   value: _smsTrackingEnabled,
                   onChanged: (value) {
-                    setState(() {
-                      _smsTrackingEnabled = value;
-                    });
+                    SmsManager.requestSmsPermission().then(
+                      (hasPermission) async {
+                        if (hasPermission) {
+                          setState(() {
+                            _smsTrackingEnabled = value;
+                          });
+                        } else {
+                          await showAlertDialog(
+                            context,
+                            title: 'Allow sms permission',
+                            description:
+                                'Sms permission is required to auto track sms',
+                          );
+                        }
+                      },
+                    );
                   },
                 ),
               ),
