@@ -138,6 +138,6 @@ class TransactionService {
         .amountProperty()
         .average();
 
-    return expense;
+    return (expense.isNaN) ? 0.0 : expense;
   }
 }
