@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pocketbook/models/transaction.dart';
 import 'package:pocketbook/presentation/screens/dashboard/pages/profile/widgets/edit_profile_sheet.dart';
 import 'package:pocketbook/presentation/screens/dashboard/pages/profile/widgets/preference_tile.dart';
 import 'package:pocketbook/utils/routes.dart';
