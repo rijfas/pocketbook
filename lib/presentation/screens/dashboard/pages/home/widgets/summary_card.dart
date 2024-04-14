@@ -1,3 +1,4 @@
+import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pocketbook/presentation/screens/dashboard/pages/home/controller.dart';
@@ -36,29 +37,33 @@ class SummaryCard extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            Row(children: [
-              Text(
-                NumberFormat.simpleCurrency(locale: 'en_IN')
-                    .format(currentDayExpense),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
+            Row(
+              children: [
+                AnimatedFlipCounter(
+                  infix: '₹',
+                  value: currentDayExpense,
+                  curve: Curves.easeIn,
+                  fractionDigits: 2,
+                  textStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              SizedBox(width: 4),
-              (currentDayExpense > monthlyAverage)
-                  ? Icon(
-                      Icons.arrow_upward_rounded,
-                      color: Colors.red,
-                      size: 36,
-                    )
-                  : Icon(
-                      Icons.arrow_downward_rounded,
-                      color: Colors.green,
-                      size: 36,
-                    )
-            ]),
+                SizedBox(width: 4),
+                (currentDayExpense > monthlyAverage)
+                    ? Icon(
+                        Icons.arrow_upward_rounded,
+                        color: Colors.red,
+                        size: 36,
+                      )
+                    : Icon(
+                        Icons.arrow_downward_rounded,
+                        color: Colors.green,
+                        size: 36,
+                      ),
+              ],
+            ),
             Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,10 +72,12 @@ class SummaryCard extends StatelessWidget {
                   'Current Month Expense',
                   style: TextStyle(color: Colors.grey[100]),
                 ),
-                Text(
-                  NumberFormat.simpleCurrency(locale: 'en_IN')
-                      .format(currentMonthExpense),
-                  style: const TextStyle(
+                AnimatedFlipCounter(
+                  infix: '₹',
+                  value: currentMonthExpense,
+                  curve: Curves.easeIn,
+                  fractionDigits: 2,
+                  textStyle: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                   ),
@@ -84,10 +91,12 @@ class SummaryCard extends StatelessWidget {
                   'Monthly Average',
                   style: TextStyle(color: Colors.grey[100]),
                 ),
-                Text(
-                  NumberFormat.simpleCurrency(locale: 'en_IN')
-                      .format(monthlyAverage),
-                  style: const TextStyle(
+                AnimatedFlipCounter(
+                  infix: '₹',
+                  value: monthlyAverage,
+                  curve: Curves.easeIn,
+                  fractionDigits: 2,
+                  textStyle: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                   ),
