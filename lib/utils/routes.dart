@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pocketbook/models/budget.dart';
 import 'package:pocketbook/presentation/screens/categories/route.dart';
 import 'package:pocketbook/presentation/screens/create_budget/route.dart';
+import 'package:pocketbook/presentation/screens/faq/route.dart';
 import 'package:pocketbook/presentation/screens/onboarding/route.dart';
 import 'package:pocketbook/presentation/screens/terms_of_use/route.dart';
 import 'package:pocketbook/presentation/screens/transactions/route.dart';
@@ -22,6 +23,7 @@ sealed class Routes {
   static const transactions = 'transactions';
   static const categories = 'categories';
   static const termsOfUse = 'terms-of-use';
+  static const faq = 'faq';
 
   static Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -45,6 +47,8 @@ sealed class Routes {
         return Categories();
       case termsOfUse:
         return TermsOfUse();
+      case faq:
+        return Faq();
       default:
         throw Exception('Invalid Route: ${routeSettings.name}');
     }

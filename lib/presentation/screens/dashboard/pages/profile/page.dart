@@ -72,6 +72,12 @@ class ProfilePage extends StatelessWidget {
                     onTap: () =>
                         Navigator.of(context).pushNamed(Routes.termsOfUse),
                   ),
+                  PreferenceTile(
+                    icon: Icons.question_mark,
+                    title: 'FAQ',
+                    subTitle: 'Frequently asked questions',
+                    onTap: () => Navigator.of(context).pushNamed(Routes.faq),
+                  ),
                 ],
               ),
             ),
@@ -100,11 +106,6 @@ class ProfilePage extends StatelessWidget {
                   const Divider(),
                   const DarkModeToggle(),
                   const SmsTrackingToggle(),
-                  const PreferenceTile(
-                    icon: Icons.question_mark,
-                    title: 'FAQ',
-                    subTitle: 'Frequently asked questions',
-                  ),
                   PreferenceTile(
                     icon: Icons.delete,
                     title: 'Reset App Data',
