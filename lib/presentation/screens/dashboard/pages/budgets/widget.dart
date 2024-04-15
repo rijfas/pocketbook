@@ -34,15 +34,12 @@ class BudgetsPageWidget extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: GridView.count(
-          crossAxisCount: 2,
-          children: budgets
-              .map(
-                (budget) => BudgetCard(
-                  budget: budget,
-                ),
-              )
-              .toList()),
+      child: ListView.builder(
+        itemCount: budgets.length,
+        itemBuilder: (context, index) => BudgetCard(
+          budget: budgets[index],
+        ),
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:isar/isar.dart';
+import 'package:pocketbook/models/transaction.dart';
 
 part 'budget.g.dart';
 
@@ -19,6 +20,17 @@ class Budget {
         for (final element in categoryWiseAmount)
           element.category: element.amount
       };
+
+  Future<double> spentAmount() async {
+    final isar = Isar.getInstance()!;
+    final expense = await isar.transactions
+        .where()
+        .filter()
+        .createdAtBetween(startDate, endDate)
+        .amountProperty()
+        .sum();
+    return expense;
+  }
 }
 
 @embedded

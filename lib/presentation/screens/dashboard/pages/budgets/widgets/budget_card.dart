@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:pocketbook/models/budget.dart';
 import 'package:pocketbook/utils/routes.dart';
 
-class BudgetCard extends StatelessWidget {
+class BudgetCard extends StatefulWidget {
   const BudgetCard({
     super.key,
     required this.budget,
@@ -12,53 +12,88 @@ class BudgetCard extends StatelessWidget {
   final Budget budget;
 
   @override
+  State<BudgetCard> createState() => _BudgetCardState();
+}
+
+class _BudgetCardState extends State<BudgetCard> {
+  double _spentAmount = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.budget.spentAmount().then((value) {
+      setState(() {
+        _spentAmount = value;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.business_center,
-            size: 48,
-          ),
-          const SizedBox(height: 8),
-          const Divider(
-            indent: 10,
-            endIndent: 10,
-          ),
-          const SizedBox(height: 8),
-          Text(
-            DateFormat.yMMMM().format(budget.startDate),
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  NumberFormat.simpleCurrency(locale: 'en_IN')
-                      .format(budget.amount),
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey[500],
-                    fontWeight: FontWeight.w500,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Stack(
+              children: [
+                SizedBox(
+                  height: 96,
+                  width: 96,
+                  child: CircularProgressIndicator(
+                    value: _spentAmount / widget.budget.amount,
+                    backgroundColor: Colors.grey[400],
+                    strokeWidth: 6,
                   ),
                 ),
-              ),
-              TextButton(
-                onPressed: () => Navigator.of(context).pushNamed(
-                  Routes.viewBudget,
-                  arguments: budget,
+                Text(
+                  '${NumberFormat.compact().format(
+                    _spentAmount * 100 / widget.budget.amount,
+                  )}%',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                  ),
                 ),
-                child: const Text('View'),
-              )
-            ],
-          )
-        ],
+              ],
+              alignment: Alignment.center,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              '${DateFormat.yMMMM().format(widget.budget.startDate)} - ${DateFormat.yMMMM().format(widget.budget.endDate)}',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    '${NumberFormat.simpleCurrency(locale: 'en_IN').format(_spentAmount)} / ${NumberFormat.simpleCurrency(locale: 'en_IN').format(widget.budget.amount)}',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey[500],
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.of(context).pushNamed(
+                    Routes.viewBudget,
+                    arguments: widget.budget,
+                  ),
+                  child: const Text('View'),
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
