@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pocketbook/presentation/screens/dashboard/pages/analytics/controller.dart';
 import 'package:pocketbook/presentation/screens/dashboard/pages/analytics/widgets/categories_list.dart';
+import 'package:pocketbook/presentation/widgets/empty_widget.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/analytics_chart.dart';
@@ -15,6 +16,10 @@ class AnalyticsPageWidget extends StatelessWidget {
       (controller) => controller.isLoading,
     );
 
+    final isEmpty = context.select<AnalyticsPageController, bool>(
+      (controller) => controller.isEmpty,
+    );
+
     if (isLoading) {
       return const Center(
         child: CircularProgressIndicator(),
@@ -26,37 +31,50 @@ class AnalyticsPageWidget extends StatelessWidget {
         horizontal: 16.0,
       ),
       child: Column(
-        children: const [
-          AnalyticsModeButton(),
-          SizedBox(height: 8),
-          Row(
-            children: [
-              const Text(
-                'Analytics',
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18,
-                ),
-              ),
-            ],
+        children: [
+          const AnalyticsModeButton(),
+          const SizedBox(
+            height: 8,
+            width: double.infinity,
           ),
-          Divider(),
-          SizedBox(height: 24),
-          AnalyticsChart(),
-          SizedBox(height: 24),
-          Row(
-            children: [
-              const Text(
-                'Categories',
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18,
-                ),
+          if (isEmpty)
+            const Expanded(
+              child: Center(
+                child: EmptyWidget(message: 'No transaction data found'),
               ),
-            ],
-          ),
-          Divider(),
-          Expanded(child: CategoriesList())
+            )
+          else ...const [
+            Row(
+              children: [
+                Text(
+                  'Analytics',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                  ),
+                ),
+              ],
+            ),
+            Divider(),
+            SizedBox(height: 24),
+            AnalyticsChart(),
+            SizedBox(height: 24),
+            Row(
+              children: [
+                Text(
+                  'Categories',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                  ),
+                ),
+              ],
+            ),
+            Divider(),
+            Expanded(
+              child: CategoriesList(),
+            )
+          ]
         ],
       ),
     );

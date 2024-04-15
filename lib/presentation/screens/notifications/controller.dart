@@ -22,6 +22,8 @@ class NotificationsController extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
+  bool get isEmpty => _notifications.isEmpty;
+
   List<Notification> get notifications => UnmodifiableListView(_notifications);
 
   Future<void> load() async {

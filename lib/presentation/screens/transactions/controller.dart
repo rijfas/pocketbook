@@ -19,8 +19,15 @@ class TransactionsController extends ChangeNotifier {
 
   List<Transaction> get transactions => UnmodifiableListView(_transactions);
 
+  bool _isLoading = true;
+
+  bool get isLoading => _isLoading;
+
+  bool get isEmpty => _transactions.isEmpty;
+
   Future<void> load() async {
     _transactions = await _service.allTransactions();
+    _isLoading = false;
     notifyListeners();
   }
 

@@ -24,6 +24,8 @@ class BudgetsPageController extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
+  bool get isEmpty => _budgets.isEmpty;
+
   Future<void> load() async {
     _isLoading = true;
     notifyListeners();

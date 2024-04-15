@@ -16,6 +16,8 @@ class AnalyticsPageController extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
+  bool get isEmpty => _chartData.isEmpty;
+
   Map<String, double> get chartData => _chartData;
 
   AnalyticsMode get mode => _mode;

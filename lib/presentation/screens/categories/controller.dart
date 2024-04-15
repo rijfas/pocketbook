@@ -12,14 +12,22 @@ class CategoriesController extends ChangeNotifier {
   }
 
   final CategoryService _service;
+
   late final StreamSubscription _subscription;
 
   List<Category> _categorys = [];
+
+  bool _isLoading = true;
+
+  bool get isLoading => _isLoading;
+
+  bool get isEmpty => _categorys.isEmpty;
 
   List<Category> get categorys => UnmodifiableListView(_categorys);
 
   Future<void> load() async {
     _categorys = await _service.customCategories();
+    _isLoading = false;
     notifyListeners();
   }
 

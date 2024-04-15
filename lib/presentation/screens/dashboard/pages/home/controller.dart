@@ -18,10 +18,12 @@ class HomePageController extends ChangeNotifier {
   double _currentDayExpense = 0.0;
   double _currentMonthExpense = 0.0;
   double _monthlyAverage = 0.0;
+
   List<Transaction> _recentTransactions = [];
   late StreamSubscription _transactionSubscription;
 
   bool get isLoading => _isLoading;
+  bool get isEmpty => _recentTransactions.isEmpty;
   double get currentDayExpense => _currentDayExpense;
   double get currentMonthExpense => _currentMonthExpense;
   double get monthlyAverage => _monthlyAverage;

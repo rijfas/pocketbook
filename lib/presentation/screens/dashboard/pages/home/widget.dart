@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'widgets/summary_card.dart';
 import 'widgets/transactions_list.dart';
 

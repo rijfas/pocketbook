@@ -4,6 +4,8 @@ import 'package:pocketbook/presentation/screens/dashboard/pages/home/controller.
 import 'package:pocketbook/presentation/widgets/transaction_tile.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../widgets/empty_widget.dart';
+
 class TransactionsList extends StatelessWidget {
   const TransactionsList({
     super.key,
@@ -15,6 +17,10 @@ class TransactionsList extends StatelessWidget {
       (controller) => controller.isLoading,
     );
 
+    final isEmpty = context.select<HomePageController, bool>(
+      (controller) => controller.isEmpty,
+    );
+
     final recentTransactions =
         context.select<HomePageController, List<Transaction>>(
       (controller) => controller.recentTransactions,
@@ -24,6 +30,14 @@ class TransactionsList extends StatelessWidget {
       return const Expanded(
         child: Center(
           child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
+    if (isEmpty) {
+      return const Expanded(
+        child: EmptyWidget(
+          message: 'No recent transactions found',
         ),
       );
     }
