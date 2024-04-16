@@ -21,16 +21,16 @@ class HomePageWidget extends StatelessWidget {
               Expanded(
                 child: FilledButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.qr_code_scanner_rounded),
-                  label: const Text('Scan to pay'),
+                  icon: const Icon(Icons.document_scanner_outlined),
+                  label: const Text('Scan Bill'),
                 ),
               ),
               const SizedBox(width: 8),
               Expanded(
                 child: ElevatedButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.send),
-                  label: const Text('Send Money'),
+                  icon: const Icon(Icons.support_agent),
+                  label: const Text('Smart Advisor'),
                 ),
               ),
             ],
