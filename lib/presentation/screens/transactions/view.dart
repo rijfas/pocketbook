@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pocketbook/presentation/widgets/empty_widget.dart';
+import 'package:pocketbook/utils/formatters.dart';
 import '../../../models/transaction.dart';
 import 'controller.dart';
 import '../../widgets/transaction_tile.dart';
@@ -50,7 +51,7 @@ class TransactionsView extends StatelessWidget {
                       context,
                       title: 'Delete Transaction?',
                       description:
-                          '${transactions[index].category} of ${NumberFormat.simpleCurrency(locale: 'en_IN').format(transactions[index].amount)} ${DateFormat.yMd().format(transactions[index].createdAt)}',
+                          '${transactions[index].category} of ${Formatters.formatCurrency(transactions[index].amount)} ${DateFormat.yMd().format(transactions[index].createdAt)}',
                     ).then((confirmDelete) async {
                       if (confirmDelete ?? false) {
                         await context

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pocketbook/models/chat_message.dart';
+import 'package:pocketbook/utils/formatters.dart';
 
 class MessageTile extends StatelessWidget {
   const MessageTile({
@@ -49,7 +50,7 @@ class MessageTile extends StatelessWidget {
             ),
             const SizedBox(height: 4.0),
             Text(
-              DateFormat.jm().format(message.createdAt),
+              Formatters.compactTimeNormal(message.createdAt),
               style: TextStyle(
                 fontSize: 12.0,
                 color: message.isMe ? Colors.white : Colors.grey[600],

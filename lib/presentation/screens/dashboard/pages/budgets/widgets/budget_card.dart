@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pocketbook/models/budget.dart';
+import 'package:pocketbook/utils/formatters.dart';
 import 'package:pocketbook/utils/routes.dart';
 
 class BudgetCard extends StatefulWidget {
@@ -61,7 +62,7 @@ class _BudgetCardState extends State<BudgetCard> {
             ),
             const SizedBox(height: 16),
             Text(
-              '${DateFormat.yMMMM().format(widget.budget.startDate)} - ${DateFormat.yMMMM().format(widget.budget.endDate)}',
+              '${Formatters.dateWithYearMonth(widget.budget.startDate)} - ${Formatters.dateWithYearMonth(widget.budget.endDate)}',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -75,7 +76,7 @@ class _BudgetCardState extends State<BudgetCard> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    '${NumberFormat.simpleCurrency(locale: 'en_IN').format(_spentAmount)} / ${NumberFormat.simpleCurrency(locale: 'en_IN').format(widget.budget.amount)}',
+                    '${Formatters.formatCurrency(_spentAmount)} / ${Formatters.formatCurrency(widget.budget.amount)}',
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey[500],

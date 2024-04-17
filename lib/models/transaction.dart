@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:isar/isar.dart';
+import 'package:pocketbook/utils/formatters.dart';
 
 part 'transaction.g.dart';
 
@@ -21,6 +22,6 @@ class Transaction {
 
   @override
   String toString() {
-    return '$category : ${NumberFormat.simpleCurrency(locale: 'en_IN').format(amount)} on $createdAt';
+    return '$category : ${Formatters.formatCurrency(amount)} on $createdAt';
   }
 }

@@ -4,6 +4,7 @@ import 'package:pocketbook/models/notification.dart';
 import 'package:pocketbook/presentation/screens/dashboard/widgets/add_expense_sheet.dart';
 import 'package:pocketbook/presentation/screens/notifications/controller.dart';
 import 'package:pocketbook/presentation/widgets/empty_widget.dart';
+import 'package:pocketbook/utils/formatters.dart';
 import 'package:provider/provider.dart';
 
 class NotificationsView extends StatelessWidget {
@@ -64,10 +65,10 @@ class NotificationsView extends StatelessWidget {
                         child: Icon(Icons.wallet),
                       ),
                       title: Text(
-                        'New transaction of ${NumberFormat.simpleCurrency(locale: 'en_IN').format(notifications[index].amount)}',
+                        'New transaction of ${Formatters.formatCurrency(notifications[index].amount)}',
                       ),
                       subtitle: Text(
-                        '${DateFormat.yMd().format(notifications[index].createdAt)} ${DateFormat.Hm().format(notifications[index].createdAt)}',
+                        '${Formatters.compactDateNormal(notifications[index].createdAt)} ${Formatters.compactTimeNormal(notifications[index].createdAt)}',
                         style: const TextStyle(color: Colors.grey),
                       ),
                       trailing: Row(mainAxisSize: MainAxisSize.min, children: [

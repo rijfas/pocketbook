@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:pocketbook/utils/formatters.dart';
 import '../../models/transaction.dart';
 
 class TransactionTile extends StatelessWidget {
@@ -28,8 +29,7 @@ class TransactionTile extends StatelessWidget {
         style: const TextStyle(color: Colors.grey),
       ),
       trailing: Text(
-        NumberFormat.compactSimpleCurrency(locale: 'en_IN')
-            .format(transaction.amount),
+        Formatters.formatCurrency(transaction.amount),
         style: const TextStyle(
           fontSize: 14,
         ),

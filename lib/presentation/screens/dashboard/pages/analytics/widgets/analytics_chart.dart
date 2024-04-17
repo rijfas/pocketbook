@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pocketbook/utils/constants.dart';
+import 'package:pocketbook/utils/formatters.dart';
 import 'package:provider/provider.dart';
 
 import '../controller.dart';
@@ -52,7 +53,7 @@ class AnalyticsChart extends StatelessWidget {
           ),
           Center(
             child: Text(
-              NumberFormat.simpleCurrency(locale: 'en_IN').format(
+              Formatters.formatCurrency(
                 totalExpense,
               ),
               style: const TextStyle(

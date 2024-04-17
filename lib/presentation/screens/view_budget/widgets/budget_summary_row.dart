@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pocketbook/presentation/screens/view_budget/controller.dart';
+import 'package:pocketbook/utils/formatters.dart';
 import 'package:provider/provider.dart';
 
 class BudgetSummaryRow extends StatelessWidget {
@@ -24,7 +25,7 @@ class BudgetSummaryRow extends StatelessWidget {
           children: [
             const Text('Total Spent'),
             Text(
-              NumberFormat.simpleCurrency(locale: 'en_IN').format(totalSpent),
+              Formatters.formatCurrency(totalSpent),
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -44,7 +45,7 @@ class BudgetSummaryRow extends StatelessWidget {
           children: [
             const Text('Total Budget'),
             Text(
-              NumberFormat.simpleCurrency(locale: 'en_IN').format(totalBudget),
+              Formatters.formatCurrency(totalBudget),
               style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
