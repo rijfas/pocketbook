@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:pocketbook/models/transaction.dart';
 import 'package:pocketbook/services/chat_message_service.dart';
 import 'package:pocketbook/services/transaction_service.dart';
+import 'package:pocketbook/utils/secrets.dart';
 import '../../../models/chat_message.dart';
 
 class SmartAdvisorController extends ChangeNotifier {
@@ -64,7 +64,7 @@ class SmartAdvisorController extends ChangeNotifier {
 
     final model = GenerativeModel(
       model: 'gemini-1.5-pro-latest',
-      apiKey: dotenv.env['GEMINI_API_KEY']!,
+      apiKey: Secrets.apiKey,
       requestOptions: const RequestOptions(apiVersion: 'v1beta'),
       systemInstruction: Content.text(
           'Respond as a personal financial assistant bot of the mobile application pocket book, give plain text response (no markdown formating),following is the users transaction data: $_transactions'),

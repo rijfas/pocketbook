@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'app.dart';
 import 'services/budget_service.dart';
@@ -14,7 +13,6 @@ import 'utils/notifications_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
   final isar = await Db.loadIsar();
   await NotificationsManager.initialize();
   runApp(

@@ -4,10 +4,10 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pocketbook/services/category_service.dart';
+import 'package:pocketbook/utils/secrets.dart';
 import 'package:pocketbook/utils/show_snackbar.dart';
 import '../../../../../models/transaction.dart';
 import '../../../../../services/transaction_service.dart';
@@ -45,8 +45,8 @@ class HomePageController extends ChangeNotifier {
       return;
     }
     final imageBytes = await image.readAsBytes();
-    final model = GenerativeModel(
-        model: 'gemini-pro-vision', apiKey: dotenv.env['GEMINI_API_KEY']!);
+    final model =
+        GenerativeModel(model: 'gemini-pro-vision', apiKey: Secrets.apiKey);
     final categories = await _categoryService.allCategories();
     final prompt =
         'get amount,<emoji> category from bill, category should be any of: $categories';
