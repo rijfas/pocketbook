@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:pocketbook/models/chat_message.dart';
 import 'package:pocketbook/utils/formatters.dart';
 

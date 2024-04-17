@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:pocketbook/presentation/screens/view_budget/controller.dart';
 import 'package:pocketbook/utils/formatters.dart';
 import 'package:provider/provider.dart';

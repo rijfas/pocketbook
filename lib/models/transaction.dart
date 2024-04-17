@@ -1,4 +1,3 @@
-import 'package:intl/intl.dart';
 import 'package:isar/isar.dart';
 import 'package:pocketbook/utils/formatters.dart';
 

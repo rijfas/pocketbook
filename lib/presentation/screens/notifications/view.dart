@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart' hide Notification;
-import 'package:intl/intl.dart';
 import 'package:pocketbook/models/notification.dart';
 import 'package:pocketbook/presentation/screens/dashboard/widgets/add_expense_sheet.dart';
 import 'package:pocketbook/presentation/screens/notifications/controller.dart';
