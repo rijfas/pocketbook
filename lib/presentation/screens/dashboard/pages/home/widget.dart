@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'controller.dart';
+import 'package:provider/provider.dart';
+
 import 'widgets/summary_card.dart';
 import 'widgets/transactions_list.dart';
 
@@ -20,7 +23,8 @@ class HomePageWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: FilledButton.icon(
-                  onPressed: () {},
+                  onPressed: () =>
+                      context.read<HomePageController>().scanBill(context),
                   icon: const Icon(Icons.document_scanner_outlined),
                   label: const Text('Scan Bill'),
                 ),

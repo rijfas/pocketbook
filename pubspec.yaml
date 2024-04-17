@@ -52,6 +52,8 @@ dependencies:
   animated_flip_counter: ^0.3.3
   lottie: ^3.1.0
   flutter_dotenv: ^5.1.0
+  image_picker: ^1.0.8
+  google_generative_ai: ^0.3.0
 
 dev_dependencies:
   flutter_test:
