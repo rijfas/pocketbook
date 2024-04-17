@@ -23,6 +23,7 @@ sealed class SmsManager {
   static Future<bool> requestSmsPermission() async {
     try {
       await Telephony.instance.requestSmsPermissions;
+      await NotificationsManager.requestNotificationPermission();
       return true;
     } catch (e) {
       return false;
