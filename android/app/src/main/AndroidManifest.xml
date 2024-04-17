@@ -3,7 +3,7 @@
 
     <application
         android:label="PocketBook"
-        android:name="PocketBook"
+        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
