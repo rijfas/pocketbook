@@ -7,6 +7,7 @@ import 'services/budget_service.dart';
 import 'services/category_service.dart';
 import 'services/notification_service.dart';
 import 'services/transaction_service.dart';
+import 'services/chat_message_service.dart';
 import 'utils/app_data.dart';
 import 'utils/db.dart';
 import 'utils/notifications_manager.dart';
@@ -24,6 +25,7 @@ Future<void> main() async {
         Provider(create: (_) => CategoryService(isar)),
         Provider(create: (_) => TransactionService(isar)),
         Provider(create: (_) => BudgetService(isar)),
+        Provider(create: (_) => ChatMessageService(isar)),
       ],
       child: const App(),
     ),

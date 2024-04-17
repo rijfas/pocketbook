@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:isar/isar.dart';
 
 part 'transaction.g.dart';
@@ -17,4 +18,9 @@ class Transaction {
   String get categoryEmoji => category.split(' ')[0];
 
   String get categoryName => category.substring(2);
+
+  @override
+  String toString() {
+    return '$category : ${NumberFormat.simpleCurrency(locale: 'en_IN').format(amount)} on $createdAt';
+  }
 }

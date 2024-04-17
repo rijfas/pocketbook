@@ -1,5 +1,6 @@
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:pocketbook/models/chat_message.dart';
 
 import '../models/notification.dart';
 import '../models/budget.dart';
@@ -16,6 +17,7 @@ sealed class Db {
             TransactionSchema,
             BudgetSchema,
             NotificationSchema,
+            ChatMessageSchema,
           ],
           directory: dir.path,
         );

@@ -4,6 +4,7 @@ import 'package:pocketbook/presentation/screens/categories/route.dart';
 import 'package:pocketbook/presentation/screens/create_budget/route.dart';
 import 'package:pocketbook/presentation/screens/faq/route.dart';
 import 'package:pocketbook/presentation/screens/onboarding/route.dart';
+import 'package:pocketbook/presentation/screens/smart_advisor/route.dart';
 import 'package:pocketbook/presentation/screens/terms_of_use/route.dart';
 import 'package:pocketbook/presentation/screens/transactions/route.dart';
 import 'package:pocketbook/presentation/screens/view_budget/route.dart';
@@ -24,6 +25,7 @@ sealed class Routes {
   static const categories = 'categories';
   static const termsOfUse = 'terms-of-use';
   static const faq = 'faq';
+  static const smartAdvisor = 'smart-advisor';
 
   static Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
@@ -49,6 +51,8 @@ sealed class Routes {
         return TermsOfUse();
       case faq:
         return Faq();
+      case smartAdvisor:
+        return SmartAdvisor();
       default:
         throw Exception('Invalid Route: ${routeSettings.name}');
     }

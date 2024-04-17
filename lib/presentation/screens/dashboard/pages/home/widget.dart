@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pocketbook/utils/routes.dart';
 import 'controller.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +33,8 @@ class HomePageWidget extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () =>
+                      Navigator.of(context).pushNamed(Routes.smartAdvisor),
                   icon: const Icon(Icons.support_agent),
                   label: const Text('Smart Advisor'),
                 ),
