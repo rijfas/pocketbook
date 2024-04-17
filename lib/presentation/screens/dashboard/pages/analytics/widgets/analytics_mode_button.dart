@@ -14,33 +14,36 @@ class AnalyticsModeButton extends StatelessWidget {
       (controller) => controller.mode,
     );
 
-    return SegmentedButton(
-      showSelectedIcon: false,
-      onSelectionChanged: (selection) =>
-          context.read<AnalyticsPageController>().changeMode(
-                selection.firstOrNull!,
-              ),
-      segments: const [
-        ButtonSegment(
-          value: AnalyticsMode.today,
-          label: Text('Today'),
-        ),
-        ButtonSegment(
-          value: AnalyticsMode.week,
-          label: Text('Weekly'),
-        ),
-        ButtonSegment(
-          value: AnalyticsMode.month,
-          label: Text('Monthly'),
-        ),
-        ButtonSegment(
-          value: AnalyticsMode.all,
-          label: Text('All'),
-        ),
-      ],
-      selected: {
-        mode,
-      },
+    return SizedBox(
+      width: double.infinity,
+      child: SegmentedButton(
+        showSelectedIcon: false,
+        onSelectionChanged: (selection) =>
+            context.read<AnalyticsPageController>().changeMode(
+                  selection.firstOrNull!,
+                ),
+        segments: const [
+          ButtonSegment(
+            value: AnalyticsMode.today,
+            label: Text('Today'),
+          ),
+          ButtonSegment(
+            value: AnalyticsMode.week,
+            label: Text('Weekly'),
+          ),
+          ButtonSegment(
+            value: AnalyticsMode.month,
+            label: Text('Monthly'),
+          ),
+          ButtonSegment(
+            value: AnalyticsMode.all,
+            label: Text('All'),
+          ),
+        ],
+        selected: {
+          mode,
+        },
+      ),
     );
   }
 }
