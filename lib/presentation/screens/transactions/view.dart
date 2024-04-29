@@ -6,7 +6,7 @@ import '../../../models/transaction.dart';
 import 'controller.dart';
 import '../../widgets/transaction_tile.dart';
 import '../../../utils/show_alert_dialog.dart';
-import '../../../utils/show_snackbar.dart';
+import '../../../utils/snackbar.dart';
 import 'package:provider/provider.dart';
 
 class TransactionsView extends StatelessWidget {
@@ -31,7 +31,7 @@ class TransactionsView extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () =>
-                showSnackbar(context, 'Long press to delete a transaction'),
+                Snackbar.show(context, 'Long press to delete a transaction'),
             icon: const Icon(Icons.question_mark),
           ),
         ],

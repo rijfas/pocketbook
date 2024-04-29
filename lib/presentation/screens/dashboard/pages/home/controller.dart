@@ -4,11 +4,10 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pocketbook/services/category_service.dart';
-import 'package:pocketbook/utils/secrets.dart';
-import 'package:pocketbook/utils/show_snackbar.dart';
+import 'package:pocketbook/utils/ai_models.dart';
+import 'package:pocketbook/utils/snackbar.dart';
 import '../../../../../models/transaction.dart';
 import '../../../../../services/transaction_service.dart';
 
@@ -40,40 +39,27 @@ class HomePageController extends ChangeNotifier {
 
   Future<void> scanBill(BuildContext context) async {
     final ImagePicker picker = ImagePicker();
+
     final image = await picker.pickImage(source: ImageSource.gallery);
     if (image == null) {
       return;
     }
     final imageBytes = await image.readAsBytes();
-    final model =
-        GenerativeModel(model: 'gemini-pro-vision', apiKey: Secrets.apiKey);
+
     final categories = await _categoryService.allCategories();
-    final prompt =
-        'get amount,<emoji> category from bill, category should be any of: $categories';
 
-    final content = [
-      Content.multi([
-        TextPart(prompt),
-        DataPart('image/png', imageBytes),
-      ])
-    ];
+    Snackbar.show(context, 'Scanning the bill...', autoHide: false);
 
-    showSnackbar(context, 'Scanning the bill...');
+    final transaction =
+        await AiModels.detectTransactionFromBillImage(imageBytes, categories);
 
-    final response = await model.generateContent(content);
+    Snackbar.hide(context);
 
-    try {
-      final data = response.text!.split(',');
-      final amount = double.tryParse(data[0]) ?? 0;
-      final category = data[1].trim();
-      final transaction = Transaction()
-        ..amount = amount
-        ..category = category
-        ..name = '';
+    if (transaction != null) {
       await _transactionService.addTranasction(transaction);
-      showSnackbar(context, 'Bill added');
-    } catch (e) {
-      showSnackbar(context, 'Something went wrong');
+      Snackbar.show(context, 'Bill added');
+    } else {
+      Snackbar.show(context, 'Something went wrong');
     }
   }
 
