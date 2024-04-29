@@ -1,9 +1,7 @@
+import 'package:pocketbook/utils/message_handler.dart';
 import 'package:telephony/telephony.dart';
 
-import '../models/notification.dart';
-import 'db.dart';
 import 'notifications_manager.dart';
-import 'extract_debit_amount.dart';
 
 sealed class SmsManager {
   static Future<bool> setupSms() async {
@@ -28,23 +26,4 @@ sealed class SmsManager {
       return false;
     }
   }
-}
-
-messageHandler(SmsMessage message) async {
-  final amount = extractDebitAmount(message.body!);
-  if (amount == null) {
-    return;
-  }
-
-  final isar = await Db.loadIsar();
-
-  await isar.writeTxn(() async {
-    await isar.notifications.put(
-      Notification()
-        ..amount = amount
-        ..category = '',
-    );
-  });
-
-  await NotificationsManager.showTransactionNotification(amount);
 }
