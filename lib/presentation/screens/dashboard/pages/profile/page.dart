@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pocketbook/presentation/screens/dashboard/pages/profile/widgets/edit_profile_sheet.dart';
 import 'package:pocketbook/presentation/screens/dashboard/pages/profile/widgets/preference_tile.dart';
 import 'package:pocketbook/utils/routes.dart';
+import 'package:pocketbook/utils/show_alert_dialog.dart';
 
 import 'widgets/dark_mode_toggle.dart';
 import 'widgets/profile_card.dart';
@@ -112,6 +113,11 @@ class ProfilePage extends StatelessWidget {
                     subTitle: 'Clear all app data and restart',
                     primaryColor: Colors.red[700],
                     secondaryColor: Colors.red[50],
+                    onTap: () => showAlertDialog(
+                      context,
+                      title: 'Clear app data?',
+                      description: 'This cannot be undone!',
+                    ),
                   ),
                 ],
               ),
