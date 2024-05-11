@@ -1,11 +1,12 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:pocketbook/utils/formatters.dart';
 
 sealed class NotificationsManager {
   static Future<void> initialize() async {
     final plugin = FlutterLocalNotificationsPlugin();
 
     const settings = InitializationSettings(
-      android: AndroidInitializationSettings('app_icon'),
+      android: AndroidInitializationSettings('notification_icon'),
     );
 
     await plugin.initialize(settings);
@@ -35,7 +36,7 @@ sealed class NotificationsManager {
     await plugin.show(
       0,
       'New transaction detected',
-      'Transaction of $amount deteted, open app to add.',
+      'Transaction of ${Formatters.formatCurrency(amount)} deteted, open app to add.',
       details,
     );
   }
