@@ -163,6 +163,7 @@ class _AddExpenseSheetState extends State<AddExpenseSheet> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         final transaction = Transaction()
+                          ..createdAt = _selectedDate
                           ..name = _expenseNameController.text
                           ..amount = double.parse(_amountController.text)
                           ..category = _selectedCategory!.toString();
