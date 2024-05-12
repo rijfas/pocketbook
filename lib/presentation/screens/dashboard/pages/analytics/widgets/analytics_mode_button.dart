@@ -29,11 +29,11 @@ class AnalyticsModeButton extends StatelessWidget {
           ),
           ButtonSegment(
             value: AnalyticsMode.week,
-            label: Text('Weekly'),
+            label: Text('This Week'),
           ),
           ButtonSegment(
             value: AnalyticsMode.month,
-            label: Text('Monthly'),
+            label: Text('This Month'),
           ),
           ButtonSegment(
             value: AnalyticsMode.all,
