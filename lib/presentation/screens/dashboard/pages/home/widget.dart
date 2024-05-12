@@ -53,7 +53,8 @@ class HomePageWidget extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () =>
+                    Navigator.of(context).pushNamed(Routes.transactions),
                 child: const Text('View All'),
               ),
             ],
