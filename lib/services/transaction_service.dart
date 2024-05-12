@@ -127,8 +127,10 @@ class TransactionService {
   }
 
   Future<double> currentMonthAverageExpense() async {
-    final DateTime dateStart = DateTime.now().subtract(
-      const Duration(days: 30),
+    final today = DateTime.now();
+
+    final DateTime dateStart = today.subtract(
+      Duration(days: today.day),
     );
 
     final expense = await _isar.transactions

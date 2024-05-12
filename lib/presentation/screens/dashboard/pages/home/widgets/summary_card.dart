@@ -87,7 +87,7 @@ class SummaryCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Monthly Average',
+                  'Daily Average',
                   style: TextStyle(color: Colors.grey[100]),
                 ),
                 AnimatedFlipCounter(
